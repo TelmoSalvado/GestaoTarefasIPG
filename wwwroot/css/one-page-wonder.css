@@ -55,15 +55,15 @@ h6 {
 }
 
 header.masthead {
-  position: relative;
-  overflow: hidden;
-  padding-top: calc(7rem + 72px);
-  padding-bottom: 7rem;
-  background: linear-gradient(0deg, #ff6a00 0%, #ee0979 100%);
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-attachment: scroll;
-  background-size: cover;
+    position: relative;
+    overflow: hidden;
+    padding-top: calc(7rem + 72px);
+    padding-bottom: 7rem;
+    background: linear-gradient(0deg, #ff6666 0%, #ff1a1a 100%);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: scroll;
+    background-size: cover;
 }
 
 header.masthead .masthead-content {
@@ -79,12 +79,12 @@ header.masthead .masthead-content .masthead-subheading {
   font-size: 2rem;
 }
 
-header.masthead .bg-circle {
-  z-index: 0;
-  position: absolute;
-  border-radius: 100%;
-  background: linear-gradient(0deg, #ee0979 0%, #ff6a00 100%);
-}
+    header.masthead .bg-circle {
+        z-index: 0;
+        position: absolute;
+        border-radius: 100%;
+        background: linear-gradient(0deg, #ff6666 0%, #990000 100%);
+    }
 
 header.masthead .bg-circle-1 {
   height: 90rem;
@@ -128,33 +128,37 @@ header.masthead .bg-circle-4 {
 }
 
 .bg-primary {
-  background-color: #ee0979 !important;
+  background-color: #ee0979;
+
 }
 
 .btn-primary {
-  background-color: #ee0979;
-  border-color: #ee0979;
+    background-color: #ff0000;
+    border-color: #000000;
 }
 
-.btn-primary:active, .btn-primary:focus, .btn-primary:hover {
-  background-color: #bd0760 !important;
-  border-color: #bd0760 !important;
-}
+    .btn-primary:active, .btn-primary:focus, .btn-primary:hover {
+        background-color: #800000;
+        border-color: #800000;
+    }
 
 .btn-primary:focus {
   box-shadow: 0 0 0 0.2rem rgba(238, 9, 121, 0.5);
 }
 
 .btn-secondary {
-  background-color: #ff6a00;
-  border-color: #ff6a00;
+    background-color: #990000;
+    border-color: #ffffff;
 }
 
-.btn-secondary:active, .btn-secondary:focus, .btn-secondary:hover {
-  background-color: #cc5500 !important;
-  border-color: #cc5500 !important;
-}
+    .btn-secondary:active, .btn-secondary:focus, .btn-secondary:hover {
+        background-color: #ff3333;
+        border-color: #ffffff;
+    }
 
 .btn-secondary:focus {
   box-shadow: 0 0 0 0.2rem rgba(255, 106, 0, 0.5);
 }
+
+
+
