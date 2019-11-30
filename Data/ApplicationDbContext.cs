@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using GestãoTarefasIPG.Models;
 
 namespace GestãoTarefasIPG.Data
 {
@@ -12,5 +13,6 @@ namespace GestãoTarefasIPG.Data
             : base(options)
         {
         }
+        public DbSet<GestãoTarefasIPG.Models.Funcionario> Funcionario { get; set; }
     }
 }

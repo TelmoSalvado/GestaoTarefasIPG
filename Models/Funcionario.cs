@@ -8,7 +8,7 @@ namespace GestãoTarefasIPG.Models
 {
     public class Funcionario
     {
-        public int IDFuncionario { get; set; }
+        public int FuncionarioId { get; set; }
         [Required]
         public string Nome { get; set; }
 
