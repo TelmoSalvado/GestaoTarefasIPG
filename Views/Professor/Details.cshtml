@@ -1,4 +1,4 @@
-﻿@model GestãoTarefasIPG.Models.Funcionario
+﻿@model GestãoTarefasIPG.Models.Professor
 
 @{
     ViewData["Title"] = "Details";
@@ -8,7 +8,7 @@
 <h1>Detalhes</h1>
 
 <div>
-    <h4>Funcionário</h4>
+    <h4>Professor</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -24,26 +24,20 @@
             @Html.DisplayFor(model => model.Numero)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Idade)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Idade)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Funcao)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Funcao)
-        </dd>
-        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Email)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Email)
         </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Disciplina)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Disciplina)
+        </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.FuncionarioId">Editar</a> |
-    <a asp-action="Index">Voltar para a Lista</a>
+    <a asp-action="Edit" asp-route-id="@Model.ProfessorId">Editar</a> |
+    <a asp-action="Index">Voltar</a>
 </div>

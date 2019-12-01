@@ -1,4 +1,4 @@
-﻿@model GestãoTarefasIPG.Models.Funcionario
+﻿@model GestãoTarefasIPG.Models.Professor
 
 @{
     ViewData["Title"] = "Create";
@@ -7,7 +7,7 @@
 
 <h1>Criar</h1>
 
-<h4>Funcionário</h4>
+<h4>Professor</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -24,19 +24,14 @@
                 <span asp-validation-for="Numero" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Idade" class="control-label"></label>
-                <input asp-for="Idade" class="form-control" />
-                <span asp-validation-for="Idade" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Funcao" class="control-label"></label>
-                <input asp-for="Funcao" class="form-control" />
-                <span asp-validation-for="Funcao" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="Email" class="control-label"></label>
                 <input asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Disciplina" class="control-label"></label>
+                <input asp-for="Disciplina" class="form-control" />
+                <span asp-validation-for="Disciplina" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Criar" class="btn btn-primary" />
@@ -46,7 +41,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Voltar para a Lista</a>
+    <a asp-action="Index">Voltar</a>
 </div>
 
 @section Scripts {

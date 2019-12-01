@@ -13,6 +13,5 @@ namespace GestãoTarefasIPG.Data
             : base(options)
         {
         }
-        public DbSet<GestãoTarefasIPG.Models.Funcionario> Funcionario { get; set; }
     }
 }
