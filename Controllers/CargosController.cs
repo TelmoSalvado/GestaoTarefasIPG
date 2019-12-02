@@ -12,9 +12,9 @@ namespace GestãoTarefasIPG.Controllers
 {
     public class CargosController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly GestaoTarefasIPGContext _context;
 
-        public CargosController(ApplicationDbContext context)
+        public CargosController(GestaoTarefasIPGContext context)
         {
             _context = context;
         }

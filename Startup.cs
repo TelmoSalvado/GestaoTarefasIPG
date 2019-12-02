@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,6 +12,7 @@ using GestãoTarefasIPG.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using GestãoTarefasIPG.Models;
 
 namespace GestãoTarefasIPG
 {
@@ -34,6 +35,9 @@ namespace GestãoTarefasIPG
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            services.AddDbContext<GestaoTarefasIPGContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("GestãoTarefasIPGContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

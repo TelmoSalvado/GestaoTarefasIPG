@@ -12,9 +12,9 @@ namespace GestãoTarefasIPG.Controllers
 {
     public class ProfessorController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly GestaoTarefasIPGContext _context;
 
-        public ProfessorController(ApplicationDbContext context)
+        public ProfessorController(GestaoTarefasIPGContext context)
         {
             _context = context;
         }

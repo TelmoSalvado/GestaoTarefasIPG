@@ -1,15 +1,14 @@
 ﻿@model GestãoTarefasIPG.Models.Funcionario
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Apagar</h1>
+<h1>Detalhes</h1>
 
-<h3>Tem a certeza que quer apagar?</h3>
 <div>
-    <h4>Funcionario</h4>
+    <h4>Funcionário</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -43,10 +42,8 @@
             @Html.DisplayFor(model => model.Email)
         </dd>
     </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="FuncionarioId" />
-        <input type="submit" value="Apagar" class="btn btn-danger" /> |
-        <a asp-action="Index">Voltar para a Lista</a>
-    </form>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.FuncionarioId">Editar</a> |
+    <a asp-action="Index">Voltar à Lista</a>
 </div>

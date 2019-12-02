@@ -13,10 +13,7 @@ namespace GestãoTarefasIPG.Data
             : base(options)
         {
         }
-        public DbSet<GestãoTarefasIPG.Models.Funcionario> Funcionario { get; set; }
-        public DbSet<GestãoTarefasIPG.Models.Cargos> Cargos { get; set; }
-
-        public DbSet<GestãoTarefasIPG.Models.Professor> Professor { get; set; }
+        
 
     }
 }

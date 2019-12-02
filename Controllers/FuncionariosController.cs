@@ -5,27 +5,26 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using GestãoTarefasIPG.Data;
 using GestãoTarefasIPG.Models;
 
 namespace GestãoTarefasIPG.Controllers
 {
-    public class FuncionarioController : Controller
+    public class FuncionariosController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly GestaoTarefasIPGContext _context;
 
-        public FuncionarioController(ApplicationDbContext context)
+        public FuncionariosController(GestaoTarefasIPGContext context)
         {
             _context = context;
         }
 
-        // GET: Funcionario
+        // GET: Funcionarios
         public async Task<IActionResult> Index()
         {
             return View(await _context.Funcionario.ToListAsync());
         }
 
-        // GET: Funcionario/Details/5
+        // GET: Funcionarios/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -43,13 +42,13 @@ namespace GestãoTarefasIPG.Controllers
             return View(funcionario);
         }
 
-        // GET: Funcionario/Create
+        // GET: Funcionarios/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Funcionario/Create
+        // POST: Funcionarios/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -65,7 +64,7 @@ namespace GestãoTarefasIPG.Controllers
             return View(funcionario);
         }
 
-        // GET: Funcionario/Edit/5
+        // GET: Funcionarios/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -81,7 +80,7 @@ namespace GestãoTarefasIPG.Controllers
             return View(funcionario);
         }
 
-        // POST: Funcionario/Edit/5
+        // POST: Funcionarios/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -116,7 +115,7 @@ namespace GestãoTarefasIPG.Controllers
             return View(funcionario);
         }
 
-        // GET: Funcionario/Delete/5
+        // GET: Funcionarios/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -134,7 +133,7 @@ namespace GestãoTarefasIPG.Controllers
             return View(funcionario);
         }
 
-        // POST: Funcionario/Delete/5
+        // POST: Funcionarios/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
