@@ -15,6 +15,8 @@ namespace GestãoTarefasIPG.Data
         }
         public DbSet<GestãoTarefasIPG.Models.Funcionario> Funcionario { get; set; }
         public DbSet<GestãoTarefasIPG.Models.Cargos> Cargos { get; set; }
-        
+
+        public DbSet<GestãoTarefasIPG.Models.Professor> Professor { get; set; }
+
     }
 }
