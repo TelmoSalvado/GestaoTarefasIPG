@@ -21,8 +21,10 @@ namespace GestãoTarefasIPG.Data.Migrations
 
             modelBuilder.Entity("GestãoTarefasIPG.Models.Cargos", b =>
                 {
-                    b.Property<string>("CargosID")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("CargosId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Nome")
                         .HasColumnType("nvarchar(max)");
@@ -30,7 +32,7 @@ namespace GestãoTarefasIPG.Data.Migrations
                     b.Property<int>("Nível")
                         .HasColumnType("int");
 
-                    b.HasKey("CargosID");
+                    b.HasKey("CargosId");
 
                     b.ToTable("Cargos");
                 });

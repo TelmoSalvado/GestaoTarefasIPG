@@ -26,7 +26,7 @@ namespace GestãoTarefasIPG.Controllers
         }
 
         // GET: Cargos/Details/5
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -34,7 +34,7 @@ namespace GestãoTarefasIPG.Controllers
             }
 
             var cargos = await _context.Cargos
-                .FirstOrDefaultAsync(m => m.CargosID == id);
+                .FirstOrDefaultAsync(m => m.CargosId == id);
             if (cargos == null)
             {
                 return NotFound();
@@ -54,7 +54,7 @@ namespace GestãoTarefasIPG.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CargosID,Nome,Nível")] Cargos cargos)
+        public async Task<IActionResult> Create([Bind("CargosId,Nome,Nível")] Cargos cargos)
         {
             if (ModelState.IsValid)
             {
@@ -66,7 +66,7 @@ namespace GestãoTarefasIPG.Controllers
         }
 
         // GET: Cargos/Edit/5
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -86,9 +86,9 @@ namespace GestãoTarefasIPG.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("CargosID,Nome,Nível")] Cargos cargos)
+        public async Task<IActionResult> Edit(int id, [Bind("CargosId,Nome,Nível")] Cargos cargos)
         {
-            if (id != cargos.CargosID)
+            if (id != cargos.CargosId)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace GestãoTarefasIPG.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CargosExists(cargos.CargosID))
+                    if (!CargosExists(cargos.CargosId))
                     {
                         return NotFound();
                     }
@@ -117,7 +117,7 @@ namespace GestãoTarefasIPG.Controllers
         }
 
         // GET: Cargos/Delete/5
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
@@ -125,7 +125,7 @@ namespace GestãoTarefasIPG.Controllers
             }
 
             var cargos = await _context.Cargos
-                .FirstOrDefaultAsync(m => m.CargosID == id);
+                .FirstOrDefaultAsync(m => m.CargosId == id);
             if (cargos == null)
             {
                 return NotFound();
@@ -137,7 +137,7 @@ namespace GestãoTarefasIPG.Controllers
         // POST: Cargos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var cargos = await _context.Cargos.FindAsync(id);
             _context.Cargos.Remove(cargos);
@@ -145,9 +145,9 @@ namespace GestãoTarefasIPG.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CargosExists(string id)
+        private bool CargosExists(int id)
         {
-            return _context.Cargos.Any(e => e.CargosID == id);
+            return _context.Cargos.Any(e => e.CargosId == id);
         }
     }
 }

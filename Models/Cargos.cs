@@ -7,7 +7,7 @@ namespace GestãoTarefasIPG.Models
 {
     public class Cargos
     {
-        public string CargosID { get; set; }
+        public int CargosId { get; set; }
 
         public string Nome { get; set; }
 

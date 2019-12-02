@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GestãoTarefasIPG.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191201223124_cargoss")]
-    partial class cargoss
+    [Migration("20191202104935_cargos")]
+    partial class cargos
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,8 +23,10 @@ namespace GestãoTarefasIPG.Data.Migrations
 
             modelBuilder.Entity("GestãoTarefasIPG.Models.Cargos", b =>
                 {
-                    b.Property<string>("CargosID")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("CargosId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Nome")
                         .HasColumnType("nvarchar(max)");
@@ -32,7 +34,7 @@ namespace GestãoTarefasIPG.Data.Migrations
                     b.Property<int>("Nível")
                         .HasColumnType("int");
 
-                    b.HasKey("CargosID");
+                    b.HasKey("CargosId");
 
                     b.ToTable("Cargos");
                 });

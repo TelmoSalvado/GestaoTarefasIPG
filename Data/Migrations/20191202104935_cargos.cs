@@ -2,7 +2,7 @@
 
 namespace GestãoTarefasIPG.Data.Migrations
 {
-    public partial class cargoss : Migration
+    public partial class cargos : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -10,13 +10,14 @@ namespace GestãoTarefasIPG.Data.Migrations
                 name: "Cargos",
                 columns: table => new
                 {
-                    CargosID = table.Column<string>(nullable: false),
+                    CargosId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(nullable: true),
                     Nível = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Cargos", x => x.CargosID);
+                    table.PrimaryKey("PK_Cargos", x => x.CargosId);
                 });
         }
 
