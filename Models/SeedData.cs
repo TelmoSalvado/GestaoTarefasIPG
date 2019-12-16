@@ -10,6 +10,7 @@ namespace GestãoTarefasIPG.Models
         public static void Populate(GestaoTarefasIPGContext db)
         {
             PopulateFuncionario(db);
+            PopulateProfessor(db);
         }
         private static void PopulateFuncionario(GestaoTarefasIPGContext db)
         {
@@ -22,6 +23,22 @@ namespace GestãoTarefasIPG.Models
                 new Funcionario { Nome = "Leonel Rita", Idade = 22, Email = "leonel@gmail.com", Numero = 1705250, Funcao = "Vice Diretor" },
                 new Funcionario { Nome = "Telmo Salvado", Idade = 18, Email = "telmo@gmail.com", Numero = 17552780, Funcao = "Diretor" },
                  new Funcionario { Nome = "Teste1", Idade = 18, Email = "teste@1.com", Numero = 17552780, Funcao = "Tester" }
+                );
+            db.SaveChanges();
+        }
+
+        private static void PopulateProfessor(GestaoTarefasIPGContext db)
+        {
+            if (db.Professor.Any())
+            {
+                return;
+            }
+            db.Professor.AddRange(
+               new Professor { Nome = "Leonel", Numero = 1234567, Email = "Leonel@ipg.pt", Disciplina = "IP"},
+               new Professor { Nome = "Carlos Carreto", Numero = 74554, Email = "carreto@ipg.pt", Disciplina = "Algoritmos" },
+               new Professor { Nome = "Teste", Numero = 000000, Email = "teste@gmail.pt", Disciplina = "teste" },
+               new Professor { Nome = "Gonçalo", Numero = 170023, Email = "Goncalo@ipg.pt", Disciplina = "IA" },
+               new Professor { Nome = "Telmo", Numero = 1546123, Email = "Telmo@ipg.pt", Disciplina = "CG"  }
                 );
             db.SaveChanges();
         }
