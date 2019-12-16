@@ -10,6 +10,8 @@ namespace GestãoTarefasIPG.Models
         public static void Populate(GestaoTarefasIPGContext db)
         {
             PopulateFuncionario(db);
+            PopulateCargos(db);
+            PopulateProfessor(db);
         }
         private static void PopulateFuncionario(GestaoTarefasIPGContext db)
         {
