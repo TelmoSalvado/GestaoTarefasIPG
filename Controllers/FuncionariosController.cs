@@ -13,7 +13,7 @@ namespace GestãoTarefasIPG.Controllers
     {
         private readonly GestaoTarefasIPGContext _context;
 
-        public int TamanhoPagina = 2;
+        public int TamanhoPagina = 8;
 
         public FuncionariosController(GestaoTarefasIPGContext context)
         {

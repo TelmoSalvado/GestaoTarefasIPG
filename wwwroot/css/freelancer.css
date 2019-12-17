@@ -99,6 +99,53 @@ abbr[data-original-title] {
   -webkit-text-decoration-skip-ink: none;
   text-decoration-skip-ink: none;
 }
+.fab {
+    font-family: 'Times New Roman', Times, serif;
+}
+.fa {
+    padding: 20px;
+    font-size: 30px;
+    width: 50px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 2px;
+}
+.fa-fw {
+    text-align: center;
+    width: 1.25em;
+}
+.fab, .fad, .fal, .far, .fas {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+}
+.fa:hover {
+  opacity: 0.7;
+}
+
+.fa-facebook {
+    background: #3B5998;
+    color: white;
+}
+.fa-facebook-f:before {
+    content: '\f39e';
+}
+.btn-social {
+    font-size: 1.25rem;
+}
+
+.fa-instagram {
+    background: #125688;
+    color: white;
+}
+.fa-flickr {
+    background: #f40083;
+    color: white;
+}
 
 address {
   margin-bottom: 1rem;
