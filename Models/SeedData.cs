@@ -76,7 +76,12 @@ namespace GestãoTarefasIPG.Models
                new Professor { Nome = "Carlos Carreto", Numero = 74554, Email = "carreto@ipg.pt", Disciplina = "Algoritmos" },
                new Professor { Nome = "Teste", Numero = 000000, Email = "teste@gmail.pt", Disciplina = "teste" },
                new Professor { Nome = "Gonçalo", Numero = 170023, Email = "Goncalo@ipg.pt", Disciplina = "IA" },
-               new Professor { Nome = "Telmo", Numero = 1546123, Email = "Telmo@ipg.pt", Disciplina = "CG"  }
+               new Professor { Nome = "Telmo", Numero = 1546123, Email = "Telmo@ipg.pt", Disciplina = "CG"  },
+               new Professor { Nome = "Ariana", Numero = 123478, Email = "Ariana@ipg.pt", Disciplina = "CG" },
+               new Professor { Nome = "Jose", Numero = 1546123, Email = "Telmo@ipg.pt", Disciplina = "CG" },
+               new Professor { Nome = "Aldina", Numero = 1546123, Email = "Telmo@ipg.pt", Disciplina = "CG" },
+               new Professor { Nome = "Ana", Numero = 1546123, Email = "Telmo@ipg.pt", Disciplina = "CG" },
+               new Professor { Nome = "Andre", Numero = 1546123, Email = "Telmo@ipg.pt", Disciplina = "CG" }
                 );
             db.SaveChanges();
         }
