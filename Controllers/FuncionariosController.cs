@@ -21,9 +21,17 @@ namespace GestãoTarefasIPG.Controllers
         }
 
         // GET: Funcionarios
-        public async Task<IActionResult> Index(int page = 1)
+        public async Task<IActionResult> Index(int page = 1, string searchString = null)
         {
-            decimal nFuncionarios = _context.Funcionario.Count();
+            var Funcionario = from p in _context.Funcionario
+                              select p;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                Funcionario = Funcionario.Where(p => p.Nome.Contains(searchString));
+            }
+
+            decimal nFuncionarios = Funcionario.Count();
             int NUMERO_PAGINAS = ((int)nFuncionarios / TamanhoPagina);
 
             if (nFuncionarios % TamanhoPagina == 0)
@@ -33,14 +41,14 @@ namespace GestãoTarefasIPG.Controllers
 
             FuncionarioViewModel vm = new FuncionarioViewModel
             {
-                Funcionarios = _context.Funcionario.OrderBy(p => p.Nome).Skip((page - 1) * TamanhoPagina).Take(TamanhoPagina),
+                Funcionarios = Funcionario.OrderBy(p => p.Nome).Skip((page - 1) * TamanhoPagina).Take(TamanhoPagina),
                 PaginaAtual = page,
                 PrimeiraPagina = Math.Max(1, page - NUMERO_PAGINAS),
                 TotalPaginas = (int)Math.Ceiling(nFuncionarios / TamanhoPagina)
             };
 
             vm.UltimaPagina = Math.Min(vm.TotalPaginas, page + NUMERO_PAGINAS);
-
+            vm.StringProcura = searchString;
             return View(vm);
         }
 

@@ -16,6 +16,8 @@ namespace GestãoTarefasIPG.Models
         public int PrimeiraPagina { get; set; }
 
         public int UltimaPagina { get; set; }
+
+        public string StringProcura { get; set; }
     }
 }
 
