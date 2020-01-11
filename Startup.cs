@@ -31,8 +31,10 @@ namespace GestãoTarefasIPG
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-           // services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-              //  .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                 .AddEntityFrameworkStores<ApplicationDbContext>()
+                 .AddDefaultTokenProviders()
+                 .AddDefaultUI();
             services.AddControllersWithViews();
             services.AddRazorPages();
 
@@ -41,14 +43,16 @@ namespace GestãoTarefasIPG
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
         {
+            SeedData.CreateRolesAsync(roleManager).Wait();
             if (env.IsDevelopment())
             {
                 using(var serviceScope = app.ApplicationServices.CreateScope())
                 {
                     var db = serviceScope.ServiceProvider.GetService<GestaoTarefasIPGContext>();
                     SeedData.Populate(db);
+                    SeedData.PopulateUsersAsync(userManager).Wait();
                 }
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
@@ -74,6 +78,7 @@ namespace GestãoTarefasIPG
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+           
         }
     }
 }

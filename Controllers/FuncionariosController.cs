@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GestãoTarefasIPG.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GestãoTarefasIPG.Controllers
 {
@@ -21,7 +22,7 @@ namespace GestãoTarefasIPG.Controllers
         }
 
         // GET: Funcionarios
-        public async Task<IActionResult> Index(int page = 1, string searchString = null)
+        public IActionResult Index(int page = 1, string searchString = null)
         {
             var Funcionario = from p in _context.Funcionario
                               select p;
@@ -71,6 +72,7 @@ namespace GestãoTarefasIPG.Controllers
         }
 
         // GET: Funcionarios/Create
+        [Authorize(Roles = "admin,func")]
         public IActionResult Create()
         {
             return View();
@@ -93,6 +95,7 @@ namespace GestãoTarefasIPG.Controllers
         }
 
         // GET: Funcionarios/Edit/5
+        [Authorize(Roles = "admin,func")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -144,6 +147,7 @@ namespace GestãoTarefasIPG.Controllers
         }
 
         // GET: Funcionarios/Delete/5
+        [Authorize(Roles = "admin,func")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
