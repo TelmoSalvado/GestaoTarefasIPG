@@ -14,15 +14,46 @@ namespace GestãoTarefasIPG.Controllers
     {
         private readonly GestaoTarefasIPGContext _context;
 
+
+        public int TamanhoPagina = 8;
+
         public CargosController(GestaoTarefasIPGContext context)
+
         {
             _context = context;
         }
 
         // GET: Cargos
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1, string searchString = null)
+
         {
-            return View(await _context.Cargos.ToListAsync());
+            var Cargos = from p in _context.Cargos
+                            select p;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                Cargos = Cargos.Where(p => p.Nome.Contains(searchString));
+            }
+            decimal nCargos = Cargos.Count();
+            int NUMERO_PAGINAS = ((int)nCargos / TamanhoPagina);
+
+            if (nCargos % TamanhoPagina == 0)
+            {
+                NUMERO_PAGINAS -= 1;
+            }
+
+            CargosViewModel vm = new CargosViewModel
+            {
+                Cargos = Cargos.OrderBy(p => p.Nome).Skip((page - 1) * TamanhoPagina).Take(TamanhoPagina),
+                PaginaAtual = page,
+                PrimeiraPagina = Math.Max(1, page - NUMERO_PAGINAS),
+                TotalPaginas = (int)Math.Ceiling(nCargos / TamanhoPagina)
+            };
+
+            vm.UltimaPagina = Math.Min(vm.TotalPaginas, page + NUMERO_PAGINAS);
+            vm.StringProcura = searchString;
+            return View(vm);
+
+
         }
 
         // GET: Cargos/Details/5
