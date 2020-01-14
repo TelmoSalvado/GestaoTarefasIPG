@@ -7,8 +7,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GestaoTarefasIPG.Models;
 
-namespace GestãoTarefasIPG.Models
+namespace GestaoTarefasIPG.Models
 {
     public class CargosViewModel
     {

@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using GestaoTarefasIPG.Data;
 using GestaoTarefasIPG.Models;
 
+
 namespace GestaoTarefasIPG.Controllers
 {
     public class CargosController : Controller

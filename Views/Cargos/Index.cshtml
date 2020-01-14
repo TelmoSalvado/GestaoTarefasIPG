@@ -1,4 +1,4 @@
-﻿@model IEnumerable<GestãoTarefasIPG.Models.Cargos>
+﻿@model CargosViewModel
 
 
 @{
@@ -12,15 +12,23 @@
     <a asp-action="Create">Criar novo</a>
 </p>
 
+@using (Html.BeginForm())
+{
+    <p>
+        Nome: <input type="text" name="searchString" value="@Model.StringProcura" placeholder="Procurar por nome" />
+        <button type="submit" class="btn btn-light" asp-action="Index" asp-route-page="1" asp-route-searchString="@Model.StringProcura">Procurar</button>
+        <a asp-action="Index" class="btn btn-info">Lista inteira</a>
+    </p>
+}
 
 <table class="table">
     <thead>
         <tr>
             <th>
-             
+                Nome:
             </th>
             <th>
-
+                Nível:
             </th>
             <th></th>
         </tr>
@@ -44,3 +52,22 @@
         }
     </tbody>
 </table>
+@if (Model.TotalPaginas > 1)
+{
+    @for (int i = 1; i <= Model.TotalPaginas; i++)
+    {
+
+        @if (i == Model.PaginaAtual)
+        {
+
+            <a href="#" class="btn btn-outline-primary">@i</a>
+
+        }
+        else
+        {
+
+            <a asp-action="Index" asp-route-page="@i" class="btn btn-outline-info">@i</a>
+        }
+    }
+}
+
