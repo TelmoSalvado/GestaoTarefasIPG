@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<GestaoTarefasIPG.Models.Cargos>
 
 @{
     ViewData["Title"] = "Index";
@@ -10,36 +10,33 @@
 <p>
     <a asp-action="Create">Criar novo</a>
 </p>
-
-
 <table class="table">
     <thead>
         <tr>
             <th>
-             
+                @Html.DisplayNameFor(model => model.Nome)
             </th>
             <th>
-
+                @Html.DisplayNameFor(model => model.Nível)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Cargos)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nome)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nível)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.CargosId">Editar</a> |
-                    <a asp-action="Details" asp-route-id="@item.CargosId">Detalhes</a> |
-                    <a asp-action="Delete" asp-route-id="@item.CargosId">Eliminar</a>
-                </td>
-            </tr>
-        }
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nível)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CargosId">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.CargosId">Detalhes</a> |
+                <a asp-action="Delete" asp-route-id="@item.CargosId">Eliminar</a>
+            </td>
+        </tr>
+}
     </tbody>
 </table>

@@ -1,4 +1,4 @@
-﻿@model GestãoTarefasIPG.Models.Funcionario
+﻿@model GestaoTarefasIPG.Models.Funcionario
 
 @{
     ViewData["Title"] = "Criar";
@@ -39,7 +39,7 @@
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Criar" class="btn btn-primary" />
+                <input type="submit" onclick="myFunction()" value="Criar" class="btn btn-primary" />
             </div>
         </form>
     </div>
@@ -48,6 +48,11 @@
 <div>
     <a asp-action="Index">Voltar à Lista</a>
 </div>
+<script>
+function myFunction() {
+  alert("Criado com sucesso!!!");
+}
+</script>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
-namespace GestãoTarefasIPG.Models
+namespace GestaoTarefasIPG.Models
 {
     public class GestaoTarefasIPGContext : DbContext
     {
@@ -13,9 +13,9 @@ namespace GestãoTarefasIPG.Models
         {
         }
 
-        public DbSet<GestãoTarefasIPG.Models.Funcionario> Funcionario { get; set; }
-        public DbSet<GestãoTarefasIPG.Models.Cargos> Cargos { get; set; }
+        public DbSet<GestaoTarefasIPG.Models.Funcionario> Funcionario { get; set; }
+        public DbSet<GestaoTarefasIPG.Models.Cargos> Cargos { get; set; }
 
-        public DbSet<GestãoTarefasIPG.Models.Professor> Professor { get; set; }
+        public DbSet<GestaoTarefasIPG.Models.Professor> Professor { get; set; }
     }
 }

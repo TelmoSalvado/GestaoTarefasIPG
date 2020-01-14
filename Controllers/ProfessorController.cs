@@ -5,14 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using GestãoTarefasIPG.Data;
-using GestãoTarefasIPG.Models;
+using GestaoTarefasIPG.Data;
+using GestaoTarefasIPG.Models;
 
-namespace GestãoTarefasIPG.Controllers
+namespace GestaoTarefasIPG.Controllers
 {
     public class ProfessorController : Controller
     {
         private readonly GestaoTarefasIPGContext _context;
+
+        public int TamanhoPagina = 8;
 
         public ProfessorController(GestaoTarefasIPGContext context)
         {
@@ -20,10 +22,36 @@ namespace GestãoTarefasIPG.Controllers
         }
 
         // GET: Professor
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1, string searchString = null)
         {
-            return View(await _context.Professor.ToListAsync());
-        }
+            var Professor = from p in _context.Professor
+                              select p;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                Professor = Professor.Where(p => p.Nome.Contains(searchString));
+            }
+            decimal nProfessor = Professor.Count();
+            int NUMERO_PAGINAS = ((int)nProfessor/ TamanhoPagina);
+
+            if (nProfessor % TamanhoPagina == 0)
+            {
+                NUMERO_PAGINAS -= 1;
+            }
+
+            ProfessorViewModel vm = new ProfessorViewModel
+            {
+                Professor = Professor.OrderBy(p => p.Nome).Skip((page - 1) * TamanhoPagina).Take(TamanhoPagina),
+                PaginaAtual = page,
+                PrimeiraPagina = Math.Max(1, page - NUMERO_PAGINAS),
+                TotalPaginas = (int)Math.Ceiling(nProfessor / TamanhoPagina)
+            };
+
+            vm.UltimaPagina = Math.Min(vm.TotalPaginas, page + NUMERO_PAGINAS);
+            vm.StringProcura = searchString;
+            return View(vm);
+
+
+        }        
 
         // GET: Professor/Details/5
         public async Task<IActionResult> Details(int? id)

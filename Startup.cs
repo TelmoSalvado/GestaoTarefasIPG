@@ -8,13 +8,13 @@ using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
-using GestãoTarefasIPG.Data;
+using GestaoTarefasIPG.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using GestãoTarefasIPG.Models;
+using GestaoTarefasIPG.Models;
 
-namespace GestãoTarefasIPG
+namespace GestaoTarefasIPG
 {
     public class Startup
     {
@@ -28,27 +28,32 @@ namespace GestãoTarefasIPG
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<GestaoTarefasIPGContext>(options =>
+                   options.UseSqlServer(Configuration.GetConnectionString("GestaoTarefasIPGContext")));
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                 .AddEntityFrameworkStores<ApplicationDbContext>()
+                 .AddDefaultTokenProviders()
+                 .AddDefaultUI();
             services.AddControllersWithViews();
             services.AddRazorPages();
 
-            services.AddDbContext<GestaoTarefasIPGContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("GestãoTarefasIPGContext")));
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
         {
+            SeedData.CreateRolesAsync(roleManager).Wait();
             if (env.IsDevelopment())
             {
                 using(var serviceScope = app.ApplicationServices.CreateScope())
                 {
                     var db = serviceScope.ServiceProvider.GetService<GestaoTarefasIPGContext>();
                     SeedData.Populate(db);
+                    SeedData.PopulateUsersAsync(userManager).Wait();
                 }
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
@@ -74,6 +79,7 @@ namespace GestãoTarefasIPG
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+           
         }
     }
 }

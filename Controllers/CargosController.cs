@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using GestãoTarefasIPG.Data;
-using GestãoTarefasIPG.Models;
+using GestaoTarefasIPG.Data;
+using GestaoTarefasIPG.Models;
 
-namespace GestãoTarefasIPG.Controllers
+namespace GestaoTarefasIPG.Controllers
 {
     public class CargosController : Controller
     {

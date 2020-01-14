@@ -1,4 +1,4 @@
-﻿@model GestãoTarefasIPG.Models.Funcionario
+﻿@model GestaoTarefasIPG.Models.Funcionario
 
 @{
     ViewData["Title"] = "Apagar";
@@ -12,41 +12,56 @@
     <h4>Funcionário</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Nome)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Nome)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Numero)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Numero)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Idade)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Idade)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Funcao)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Funcao)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Email)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Email)
         </dd>
     </dl>
-    
-    <form asp-action="Delete">
+
+   <form asp-action="Delete">
         <input type="hidden" asp-for="FuncionarioId" />
-        <input type="submit" value="Apagar" class="btn btn-danger" /> |
+        <input onclick="myFunction()" type="submit" value="Apagar" class="btn btn-danger" /> |
         <a asp-action="Index">Voltar à Lista</a>
     </form>
 </div>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+  var txt;
+  var r = confirm("Tem a certeza que deseja apagar?");
+  if (r == true) {
+    txt = "You pressed OK!";
+  } else {
+      txt = "You pressed Cancel!";
+  }
+  document.getElementById("demo").innerHTML = txt;
+    }
+</script>

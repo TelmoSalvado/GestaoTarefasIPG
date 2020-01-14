@@ -5,13 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using GestãoTarefasIPG.Models;
+using GestaoTarefasIPG.Models;
+using Microsoft.AspNetCore.Authorization;
 
-namespace GestãoTarefasIPG.Controllers
+namespace GestaoTarefasIPG.Controllers
 {
     public class FuncionariosController : Controller
     {
         private readonly GestaoTarefasIPGContext _context;
+
+        public int TamanhoPagina = 8;
 
         public FuncionariosController(GestaoTarefasIPGContext context)
         {
@@ -19,9 +22,35 @@ namespace GestãoTarefasIPG.Controllers
         }
 
         // GET: Funcionarios
-        public async Task<IActionResult> Index()
+        public IActionResult Index(int page = 1, string searchString = null)
         {
-            return View(await _context.Funcionario.ToListAsync());
+            var Funcionario = from p in _context.Funcionario
+                              select p;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                Funcionario = Funcionario.Where(p => p.Nome.Contains(searchString));
+            }
+
+            decimal nFuncionarios = Funcionario.Count();
+            int NUMERO_PAGINAS = ((int)nFuncionarios / TamanhoPagina);
+
+            if (nFuncionarios % TamanhoPagina == 0)
+            {
+                NUMERO_PAGINAS -= 1;
+            }
+
+            FuncionarioViewModel vm = new FuncionarioViewModel
+            {
+                Funcionarios = Funcionario.OrderBy(p => p.Nome).Skip((page - 1) * TamanhoPagina).Take(TamanhoPagina),
+                PaginaAtual = page,
+                PrimeiraPagina = Math.Max(1, page - NUMERO_PAGINAS),
+                TotalPaginas = (int)Math.Ceiling(nFuncionarios / TamanhoPagina)
+            };
+
+            vm.UltimaPagina = Math.Min(vm.TotalPaginas, page + NUMERO_PAGINAS);
+            vm.StringProcura = searchString;
+            return View(vm);
         }
 
         // GET: Funcionarios/Details/5
@@ -43,6 +72,7 @@ namespace GestãoTarefasIPG.Controllers
         }
 
         // GET: Funcionarios/Create
+        [Authorize(Roles = "admin,func")]
         public IActionResult Create()
         {
             return View();
@@ -65,6 +95,7 @@ namespace GestãoTarefasIPG.Controllers
         }
 
         // GET: Funcionarios/Edit/5
+        [Authorize(Roles = "admin,func")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -116,6 +147,7 @@ namespace GestãoTarefasIPG.Controllers
         }
 
         // GET: Funcionarios/Delete/5
+        [Authorize(Roles = "admin,func")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

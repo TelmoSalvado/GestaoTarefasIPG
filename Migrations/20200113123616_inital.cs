@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace GestãoTarefasIPG.Migrations.GestaoTarefasIPG
+namespace GestãoTarefasIPG.Migrations
 {
-    public partial class second : Migration
+    public partial class inital : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -5,9 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using GestãoTarefasIPG.Models;
+using GestaoTarefasIPG.Models;
 
-namespace GestãoTarefasIPG.Controllers
+namespace GestaoTarefasIPG.Controllers
 {
     public class HomeController : Controller
     {
