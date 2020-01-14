@@ -1,5 +1,5 @@
 ﻿using System;
-using GestãoTarefasIPG.Data;
+using GestaoTarefasIPG.Data;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
@@ -15,12 +15,6 @@ namespace GestãoTarefasIPG.Areas.Identity
         public void Configure(IWebHostBuilder builder)
         {
             builder.ConfigureServices((context, services) => {
-                services.AddDbContext<GestãoTarefasIPGContext>(options =>
-                    options.UseSqlServer(
-                        context.Configuration.GetConnectionString("GestãoTarefasIPGContextConnection")));
-
-                services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                    .AddEntityFrameworkStores<GestãoTarefasIPGContext>();
             });
         }
     }

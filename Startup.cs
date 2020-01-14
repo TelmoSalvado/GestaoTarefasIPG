@@ -8,13 +8,13 @@ using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
-using GestãoTarefasIPG.Data;
+using GestaoTarefasIPG.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using GestãoTarefasIPG.Models;
+using GestaoTarefasIPG.Models;
 
-namespace GestãoTarefasIPG
+namespace GestaoTarefasIPG
 {
     public class Startup
     {
@@ -28,6 +28,8 @@ namespace GestãoTarefasIPG
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<GestaoTarefasIPGContext>(options =>
+                   options.UseSqlServer(Configuration.GetConnectionString("GestaoTarefasIPGContext")));
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
@@ -38,8 +40,7 @@ namespace GestãoTarefasIPG
             services.AddControllersWithViews();
             services.AddRazorPages();
 
-            services.AddDbContext<GestaoTarefasIPGContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("GestãoTarefasIPGContext")));
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

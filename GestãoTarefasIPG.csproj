@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
-    <UserSecretsId>aspnet-GestãoTarefasIPG-A9A4E43F-E16A-483D-A6EC-0DBB7E6566D4</UserSecretsId>
+    <UserSecretsId>aspnet-GestaoTarefasIPG-A9A4E43F-E16A-483D-A6EC-0DBB7E6566D4</UserSecretsId>
   </PropertyGroup>
 
 

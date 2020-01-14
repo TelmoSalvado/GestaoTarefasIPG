@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using GestãoTarefasIPG.Models;
+using GestaoTarefasIPG.Models;
 
-namespace GestãoTarefasIPG.Data
+namespace GestaoTarefasIPG.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {

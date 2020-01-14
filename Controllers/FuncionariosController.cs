@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using GestãoTarefasIPG.Models;
+using GestaoTarefasIPG.Models;
 using Microsoft.AspNetCore.Authorization;
 
-namespace GestãoTarefasIPG.Controllers
+namespace GestaoTarefasIPG.Controllers
 {
     public class FuncionariosController : Controller
     {

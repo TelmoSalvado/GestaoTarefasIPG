@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GestãoTarefasIPG.Models
+namespace GestaoTarefasIPG.Models
 {
     public class SeedData
     {
@@ -18,7 +18,7 @@ namespace GestãoTarefasIPG.Models
         }
         public static async Task PopulateUsersAsync(UserManager<IdentityUser> userManager)
         {
-            const string ADMIN_USERNAME = "administrador@ipg.pt";
+           /* const string ADMIN_USERNAME = "administrador@ipg.pt";
             const string ADMIN_PASSWORD = "Qualquer123";
 
             const string FUNC_USERNAME = "funcionario@ipg.pt";
@@ -68,14 +68,14 @@ namespace GestãoTarefasIPG.Models
                 };
 
                 await userManager.CreateAsync(user, ADMIN_PASSWORD);
-            }
+            }*/
         }
 
 
         public static async Task CreateRolesAsync(RoleManager<IdentityRole> roleManager)
         {
 
-            if (!await roleManager.RoleExistsAsync(ADMIN_ROLE))
+          /* if (!await roleManager.RoleExistsAsync(ADMIN_ROLE))
             {
                 await roleManager.CreateAsync(new IdentityRole(ADMIN_ROLE));
             }
@@ -83,7 +83,7 @@ namespace GestãoTarefasIPG.Models
             if (!await roleManager.RoleExistsAsync(FUNCIONARIO_ROLE))
             {
                 await roleManager.CreateAsync(new IdentityRole(FUNCIONARIO_ROLE));
-            }
+            }*/
         }
         private static void PopulateFuncionario(GestaoTarefasIPGContext db)
         {

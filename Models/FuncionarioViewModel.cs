@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GestãoTarefasIPG.Models
+namespace GestaoTarefasIPG.Models
 {
     public class FuncionarioViewModel
     {

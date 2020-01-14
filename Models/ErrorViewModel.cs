@@ -1,6 +1,6 @@
 using System;
 
-namespace GestãoTarefasIPG.Models
+namespace GestaoTarefasIPG.Models
 {
     public class ErrorViewModel
     {
