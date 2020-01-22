@@ -11,6 +11,7 @@ namespace GestaoTarefasIPG.Models
 
         public string Nome { get; set; }
 
-       public int Nível { get; set; }
+        public int Nível { get; set; }
+        public ICollection<Funcionario> Funcionarios { get; set; }
     }
 }

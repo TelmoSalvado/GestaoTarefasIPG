@@ -7,8 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-[assembly: HostingStartup(typeof(GestãoTarefasIPG.Areas.Identity.IdentityHostingStartup))]
-namespace GestãoTarefasIPG.Areas.Identity
+[assembly: HostingStartup(typeof(GestaoTarefasIPG.Areas.Identity.IdentityHostingStartup))]
+namespace GestaoTarefasIPG.Areas.Identity
 {
     public class IdentityHostingStartup : IHostingStartup
     {

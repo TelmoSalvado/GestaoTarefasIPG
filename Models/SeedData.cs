@@ -16,59 +16,59 @@ namespace GestaoTarefasIPG.Models
             PopulateCargos(db);
             PopulateProfessor(db);
         }
-        public static async Task PopulateUsersAsync(UserManager<IdentityUser> userManager)
+        public static async Task PopulateUsers(UserManager<IdentityUser> userManager)
         {
-           /* const string ADMIN_USERNAME = "administrador@ipg.pt";
-            const string ADMIN_PASSWORD = "Qualquer123";
+            /*const string ADMIN_USERNAME = "administrador@ipg.pt";
+             const string ADMIN_PASSWORD = "Qualquer123";
 
-            const string FUNC_USERNAME = "funcionario@ipg.pt";
-            const string FUNC_PASSWORD = "Qualquer123";
+             const string FUNC_USERNAME = "funcionario@ipg.pt";
+             const string FUNC_PASSWORD = "Qualquer123";
 
-            IdentityUser user = await userManager.FindByNameAsync(ADMIN_USERNAME);
-            if (user == null)
-            {
-                user = new IdentityUser
-                {
-                    UserName = ADMIN_USERNAME,
-                    Email = ADMIN_USERNAME
-                };
+             IdentityUser user = await userManager.FindByNameAsync(ADMIN_USERNAME);
+             if (user == null)
+             {
+                 user = new IdentityUser
+                 {
+                     UserName = ADMIN_USERNAME,
+                     Email = ADMIN_USERNAME
+                 };
 
-                await userManager.CreateAsync(user, ADMIN_PASSWORD);
-            }
+                 await userManager.CreateAsync(user, ADMIN_PASSWORD);
+             }
 
-            if (!await userManager.IsInRoleAsync(user, ADMIN_ROLE))
-            {
-                await userManager.AddToRoleAsync(user, ADMIN_ROLE);
-            }
+             if (!await userManager.IsInRoleAsync(user, ADMIN_ROLE))
+             {
+                 await userManager.AddToRoleAsync(user, ADMIN_ROLE);
+             }
 
-            user = await userManager.FindByNameAsync(FUNC_USERNAME);
-            if (user == null)
-            {
-                user = new IdentityUser
-                {
-                    UserName = FUNC_USERNAME,
-                    Email = FUNC_USERNAME
-                };
+             user = await userManager.FindByNameAsync(FUNC_USERNAME);
+             if (user == null)
+             {
+                 user = new IdentityUser
+                 {
+                     UserName = FUNC_USERNAME,
+                     Email = FUNC_USERNAME
+                 };
 
-                await userManager.CreateAsync(user, FUNC_PASSWORD);
-            }
+                 await userManager.CreateAsync(user, FUNC_PASSWORD);
+             }
 
-            if (!await userManager.IsInRoleAsync(user, FUNCIONARIO_ROLE))
-            {
-                await userManager.AddToRoleAsync(user, FUNCIONARIO_ROLE);
-            }
+             if (!await userManager.IsInRoleAsync(user, FUNCIONARIO_ROLE))
+             {
+                 await userManager.AddToRoleAsync(user, FUNCIONARIO_ROLE);
+             }
 
-            user = await userManager.FindByNameAsync("test@ipg.pt");
-            if (user == null)
-            {
-                user = new IdentityUser
-                {
-                    UserName = "test@ipg.pt",
-                    Email = "test@ipg.pt"
-                };
+             user = await userManager.FindByNameAsync("test@ipg.pt");
+             if (user == null)
+             {
+                 user = new IdentityUser
+                 {
+                     UserName = "test@ipg.pt",
+                     Email = "test@ipg.pt"
+                 };
 
-                await userManager.CreateAsync(user, ADMIN_PASSWORD);
-            }*/
+                 await userManager.CreateAsync(user, ADMIN_PASSWORD);
+             }*/
         }
 
 
@@ -85,43 +85,7 @@ namespace GestaoTarefasIPG.Models
                 await roleManager.CreateAsync(new IdentityRole(FUNCIONARIO_ROLE));
             }*/
         }
-        private static void PopulateFuncionario(GestaoTarefasIPGContext db)
-        {
-            if (db.Funcionario.Any())
-            {
-                return;
-            }
-            db.Funcionario.AddRange(
-                new Funcionario { Nome = "Gonçalo Santos", Idade = 32, Email = "goncalo@gmail.com", Numero = 1700780, Funcao = "Secretario" },
-                new Funcionario { Nome = "Leonel Rita", Idade = 22, Email = "leonel@gmail.com", Numero = 1705250, Funcao = "Vice Diretor" },
-                new Funcionario { Nome = "Telmo Salvado", Idade = 18, Email = "telmo@gmail.com", Numero = 17552780, Funcao = "Diretor" },
-                new Funcionario { Nome = "Teste1", Idade = 18, Email = "teste@1.com", Numero = 17552780, Funcao = "Tester" },
-                new Funcionario { Nome = "Teste1", Idade = 18, Email = "teste@1.com", Numero = 17552780, Funcao = "Tester" },
-                new Funcionario { Nome = "Teste1", Idade = 18, Email = "teste@1.com", Numero = 17552780, Funcao = "Tester" },
-                new Funcionario { Nome = "Teste1", Idade = 18, Email = "teste@1.com", Numero = 17552780, Funcao = "Tester" },
-                new Funcionario { Nome = "Teste1", Idade = 18, Email = "teste@1.com", Numero = 17552780, Funcao = "Tester" },
-                new Funcionario { Nome = "Teste1", Idade = 18, Email = "teste@1.com", Numero = 17552780, Funcao = "Tester" },
-                new Funcionario { Nome = "Teste1", Idade = 18, Email = "teste@1.com", Numero = 17552780, Funcao = "Tester" },
-                new Funcionario { Nome = "Teste1", Idade = 18, Email = "teste@1.com", Numero = 17552780, Funcao = "Tester" },
-                new Funcionario { Nome = "Teste1", Idade = 18, Email = "teste@1.com", Numero = 17552780, Funcao = "Tester" },
-                new Funcionario { Nome = "Teste1", Idade = 18, Email = "teste@1.com", Numero = 17552780, Funcao = "Tester" },
-                new Funcionario { Nome = "Teste1", Idade = 18, Email = "teste@1.com", Numero = 17552780, Funcao = "Tester" }, 
-                new Funcionario { Nome = "Teste1", Idade = 18, Email = "teste@1.com", Numero = 17552780, Funcao = "Tester" },
-                new Funcionario { Nome = "Teste1", Idade = 18, Email = "teste@1.com", Numero = 17552780, Funcao = "Tester" },
-                new Funcionario { Nome = "Teste1", Idade = 18, Email = "teste@1.com", Numero = 17552780, Funcao = "Tester" }, 
-                new Funcionario { Nome = "Teste1", Idade = 18, Email = "teste@1.com", Numero = 17552780, Funcao = "Tester" },
-                new Funcionario { Nome = "Teste1", Idade = 18, Email = "teste@1.com", Numero = 17552780, Funcao = "Tester" }, 
-                new Funcionario { Nome = "Teste1", Idade = 18, Email = "teste@1.com", Numero = 17552780, Funcao = "Tester" },
-                new Funcionario { Nome = "Teste1", Idade = 18, Email = "teste@1.com", Numero = 17552780, Funcao = "Tester" },
-                new Funcionario { Nome = "Teste1", Idade = 18, Email = "teste@1.com", Numero = 17552780, Funcao = "Tester" }, 
-                new Funcionario { Nome = "Teste1", Idade = 18, Email = "teste@1.com", Numero = 17552780, Funcao = "Tester" },
-                new Funcionario { Nome = "Teste1", Idade = 18, Email = "teste@1.com", Numero = 17552780, Funcao = "Tester" }, 
-                new Funcionario { Nome = "Teste1", Idade = 18, Email = "teste@1.com", Numero = 17552780, Funcao = "Tester" },
-                new Funcionario { Nome = "Teste1", Idade = 18, Email = "teste@1.com", Numero = 17552780, Funcao = "Tester" }
-                );
-            
-            db.SaveChanges();
-        }
+       
         private static void PopulateCargos(GestaoTarefasIPGContext db)
         {
             if (db.Cargos.Any())
@@ -136,7 +100,44 @@ namespace GestaoTarefasIPG.Models
 
             db.SaveChanges();
         }
-
+        private static void PopulateFuncionario(GestaoTarefasIPGContext db)
+        {
+       
+            if (db.Funcionario.Any())
+            {
+                return;
+            }
+            db.Funcionario.AddRange(
+                new Funcionario { Nome = "Gonçalo Santos", Idade = 32, Email = "goncalo@gmail.com", Numero = 1700780, CargosId = 1 });/*
+                new Funcionario { Nome = "Leonel Rita", Idade = 22, Email = "leonel@gmail.com", Numero = 1705250, Funcao = "Vice Diretor" },
+                new Funcionario { Nome = "Telmo Salvado", Idade = 18, Email = "telmo@gmail.com", Numero = 17552780, Funcao = "Diretor" },
+                new Funcionario { Nome = "Teste1", Idade = 18, Email = "teste@1.com", Numero = 17552780, Funcao = "Tester" },
+                new Funcionario { Nome = "Teste1", Idade = 18, Email = "teste@1.com", Numero = 17552780, Funcao = "Tester" },
+                new Funcionario { Nome = "Teste1", Idade = 18, Email = "teste@1.com", Numero = 17552780, Funcao = "Tester" },
+                new Funcionario { Nome = "Teste1", Idade = 18, Email = "teste@1.com", Numero = 17552780, Funcao = "Tester" },
+                new Funcionario { Nome = "Teste1", Idade = 18, Email = "teste@1.com", Numero = 17552780, Funcao = "Tester" },
+                new Funcionario { Nome = "Teste1", Idade = 18, Email = "teste@1.com", Numero = 17552780, Funcao = "Tester" },
+                new Funcionario { Nome = "Teste1", Idade = 18, Email = "teste@1.com", Numero = 17552780, Funcao = "Tester" },
+                new Funcionario { Nome = "Teste1", Idade = 18, Email = "teste@1.com", Numero = 17552780, Funcao = "Tester" },
+                new Funcionario { Nome = "Teste1", Idade = 18, Email = "teste@1.com", Numero = 17552780, Funcao = "Tester" },
+                new Funcionario { Nome = "Teste1", Idade = 18, Email = "teste@1.com", Numero = 17552780, Funcao = "Tester" },
+                new Funcionario { Nome = "Teste1", Idade = 18, Email = "teste@1.com", Numero = 17552780, Funcao = "Tester" },
+                new Funcionario { Nome = "Teste1", Idade = 18, Email = "teste@1.com", Numero = 17552780, Funcao = "Tester" },
+                new Funcionario { Nome = "Teste1", Idade = 18, Email = "teste@1.com", Numero = 17552780, Funcao = "Tester" },
+                new Funcionario { Nome = "Teste1", Idade = 18, Email = "teste@1.com", Numero = 17552780, Funcao = "Tester" },
+                new Funcionario { Nome = "Teste1", Idade = 18, Email = "teste@1.com", Numero = 17552780, Funcao = "Tester" },
+                new Funcionario { Nome = "Teste1", Idade = 18, Email = "teste@1.com", Numero = 17552780, Funcao = "Tester" },
+                new Funcionario { Nome = "Teste1", Idade = 18, Email = "teste@1.com", Numero = 17552780, Funcao = "Tester" },
+                new Funcionario { Nome = "Teste1", Idade = 18, Email = "teste@1.com", Numero = 17552780, Funcao = "Tester" },
+                new Funcionario { Nome = "Teste1", Idade = 18, Email = "teste@1.com", Numero = 17552780, Funcao = "Tester" },
+                new Funcionario { Nome = "Teste1", Idade = 18, Email = "teste@1.com", Numero = 17552780, Funcao = "Tester" },
+                new Funcionario { Nome = "Teste1", Idade = 18, Email = "teste@1.com", Numero = 17552780, Funcao = "Tester" },
+                new Funcionario { Nome = "Teste1", Idade = 18, Email = "teste@1.com", Numero = 17552780, Funcao = "Tester" },
+                new Funcionario { Nome = "Teste1", Idade = 18, Email = "teste@1.com", Numero = 17552780, Funcao = "Tester" }
+                );*/
+                
+            db.SaveChanges();
+        }
         private static void PopulateProfessor(GestaoTarefasIPGContext db)
         {
             if (db.Professor.Any())

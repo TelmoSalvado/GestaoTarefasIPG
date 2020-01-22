@@ -6,15 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GestaoTarefasIPG.Models;
-using Microsoft.AspNetCore.Authorization;
 
-namespace GestaoTarefasIPG.Controllers
+namespace GestãoTarefasIPG.Controllers
 {
     public class FuncionariosController : Controller
     {
         private readonly GestaoTarefasIPGContext _context;
-
-        public int TamanhoPagina = 8;
 
         public FuncionariosController(GestaoTarefasIPGContext context)
         {
@@ -22,35 +19,10 @@ namespace GestaoTarefasIPG.Controllers
         }
 
         // GET: Funcionarios
-        public IActionResult Index(int page = 1, string searchString = null)
+        public async Task<IActionResult> Index()
         {
-            var Funcionario = from p in _context.Funcionario
-                              select p;
-
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                Funcionario = Funcionario.Where(p => p.Nome.Contains(searchString));
-            }
-
-            decimal nFuncionarios = Funcionario.Count();
-            int NUMERO_PAGINAS = ((int)nFuncionarios / TamanhoPagina);
-
-            if (nFuncionarios % TamanhoPagina == 0)
-            {
-                NUMERO_PAGINAS -= 1;
-            }
-
-            FuncionarioViewModel vm = new FuncionarioViewModel
-            {
-                Funcionarios = Funcionario.OrderBy(p => p.Nome).Skip((page - 1) * TamanhoPagina).Take(TamanhoPagina),
-                PaginaAtual = page,
-                PrimeiraPagina = Math.Max(1, page - NUMERO_PAGINAS),
-                TotalPaginas = (int)Math.Ceiling(nFuncionarios / TamanhoPagina)
-            };
-
-            vm.UltimaPagina = Math.Min(vm.TotalPaginas, page + NUMERO_PAGINAS);
-            vm.StringProcura = searchString;
-            return View(vm);
+            var gestaoTarefasIPGContext = _context.Funcionario.Include(f => f.Cargos);
+            return View(await gestaoTarefasIPGContext.ToListAsync());
         }
 
         // GET: Funcionarios/Details/5
@@ -62,6 +34,7 @@ namespace GestaoTarefasIPG.Controllers
             }
 
             var funcionario = await _context.Funcionario
+                .Include(f => f.Cargos)
                 .FirstOrDefaultAsync(m => m.FuncionarioId == id);
             if (funcionario == null)
             {
@@ -72,9 +45,9 @@ namespace GestaoTarefasIPG.Controllers
         }
 
         // GET: Funcionarios/Create
-        [Authorize(Roles = "admin,func")]
         public IActionResult Create()
         {
+            ViewData["CargosId"] = new SelectList(_context.Cargos, "CargosId", "CargosId");
             return View();
         }
 
@@ -83,7 +56,7 @@ namespace GestaoTarefasIPG.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("FuncionarioId,Nome,Numero,Idade,Funcao,Email")] Funcionario funcionario)
+        public async Task<IActionResult> Create([Bind("FuncionarioId,Nome,Numero,Idade,Email,CargosId")] Funcionario funcionario)
         {
             if (ModelState.IsValid)
             {
@@ -91,11 +64,11 @@ namespace GestaoTarefasIPG.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CargosId"] = new SelectList(_context.Cargos, "CargosId", "CargosId", funcionario.CargosId);
             return View(funcionario);
         }
 
         // GET: Funcionarios/Edit/5
-        [Authorize(Roles = "admin,func")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -108,6 +81,7 @@ namespace GestaoTarefasIPG.Controllers
             {
                 return NotFound();
             }
+            ViewData["CargosId"] = new SelectList(_context.Cargos, "CargosId", "CargosId", funcionario.CargosId);
             return View(funcionario);
         }
 
@@ -116,7 +90,7 @@ namespace GestaoTarefasIPG.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("FuncionarioId,Nome,Numero,Idade,Funcao,Email")] Funcionario funcionario)
+        public async Task<IActionResult> Edit(int id, [Bind("FuncionarioId,Nome,Numero,Idade,Email,CargosId")] Funcionario funcionario)
         {
             if (id != funcionario.FuncionarioId)
             {
@@ -143,11 +117,11 @@ namespace GestaoTarefasIPG.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CargosId"] = new SelectList(_context.Cargos, "CargosId", "CargosId", funcionario.CargosId);
             return View(funcionario);
         }
 
         // GET: Funcionarios/Delete/5
-        [Authorize(Roles = "admin,func")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -156,6 +130,7 @@ namespace GestaoTarefasIPG.Controllers
             }
 
             var funcionario = await _context.Funcionario
+                .Include(f => f.Cargos)
                 .FirstOrDefaultAsync(m => m.FuncionarioId == id);
             if (funcionario == null)
             {

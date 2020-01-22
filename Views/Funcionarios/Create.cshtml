@@ -1,13 +1,13 @@
 ﻿@model GestaoTarefasIPG.Models.Funcionario
 
 @{
-    ViewData["Title"] = "Criar";
+    ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Criar</h1>
+<h1>Create</h1>
 
-<h4>Funcionário</h4>
+<h4>Funcionario</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -29,30 +29,24 @@
                 <span asp-validation-for="Idade" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Funcao" class="control-label"></label>
-                <input asp-for="Funcao" class="form-control" />
-                <span asp-validation-for="Funcao" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="Email" class="control-label"></label>
                 <input asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" onclick="myFunction()" value="Criar" class="btn btn-primary" />
+                <label asp-for="CargosId" class="control-label"></label>
+                <select asp-for="CargosId" class ="form-control" asp-items="ViewBag.CargosId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Voltar à Lista</a>
+    <a asp-action="Index">Back to List</a>
 </div>
-<script>
-function myFunction() {
-  alert("Criado com sucesso!!!");
-}
-</script>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

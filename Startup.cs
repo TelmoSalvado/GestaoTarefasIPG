@@ -53,7 +53,7 @@ namespace GestaoTarefasIPG
                 {
                     var db = serviceScope.ServiceProvider.GetService<GestaoTarefasIPGContext>();
                     SeedData.Populate(db);
-                    SeedData.PopulateUsersAsync(userManager).Wait();
+                    SeedData.PopulateUsers(userManager).Wait();
                 }
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();

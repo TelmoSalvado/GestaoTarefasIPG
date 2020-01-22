@@ -15,10 +15,11 @@ namespace GestaoTarefasIPG.Models
         public int Numero { get; set; }
        
         public int Idade { get; set; }
-        [Required(ErrorMessage = "Por favor, insira uma função")]
-        public string Funcao { get; set; }
         [Required(ErrorMessage = "Por favor, insira um e-mail")]
         [EmailAddress]
         public string Email { get; set; }
+        [Required(ErrorMessage = "Por favor, insira uma função")] 
+        public Cargos Cargos { get; set; }
+        public int CargosId { get; set; }
     }
 }
