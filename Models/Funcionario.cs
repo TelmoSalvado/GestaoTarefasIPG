@@ -11,9 +11,9 @@ namespace GestaoTarefasIPG.Models
         public int FuncionarioId { get; set; }
         [Required(ErrorMessage = "Por favor, insira um nome")]
         public string Nome { get; set; }
-      
+        [Required]
         public int Numero { get; set; }
-       
+        [Required]
         public int Idade { get; set; }
         [Required(ErrorMessage = "Por favor, insira um e-mail")]
         [EmailAddress]

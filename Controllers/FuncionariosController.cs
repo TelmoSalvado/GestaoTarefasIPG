@@ -13,16 +13,45 @@ namespace GestãoTarefasIPG.Controllers
     {
         private readonly GestaoTarefasIPGContext _context;
 
+        public int TamanhoPagina = 7;
+
         public FuncionariosController(GestaoTarefasIPGContext context)
         {
             _context = context;
         }
 
         // GET: Funcionarios
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1, string searchString = null)
         {
-            var gestaoTarefasIPGContext = _context.Funcionario.Include(f => f.Cargos);
-            return View(await gestaoTarefasIPGContext.ToListAsync());
+            var _contextFuncionario = _context.Funcionario.Include(f => f.Cargos);
+            var Funcionario = from p in _contextFuncionario
+                            select p;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                Funcionario = Funcionario.Where(p => p.Nome.Contains(searchString));
+            }
+            decimal nFuncionario = Funcionario.Count();
+            int NUMERO_PAGINAS = ((int)nFuncionario / TamanhoPagina);
+
+            if (nFuncionario % TamanhoPagina == 0)
+            {
+                NUMERO_PAGINAS -= 1;
+            }
+
+            FuncionarioViewModel vm = new FuncionarioViewModel
+            {
+                Funcionarios = Funcionario.OrderBy(p => p.Nome).Skip((page - 1) * TamanhoPagina).Take(TamanhoPagina),
+                PaginaAtual = page,
+                PrimeiraPagina = Math.Max(1, page - NUMERO_PAGINAS),
+                TotalPaginas = (int)Math.Ceiling(nFuncionario / TamanhoPagina)
+            };
+
+            vm.UltimaPagina = Math.Min(vm.TotalPaginas, page + NUMERO_PAGINAS);
+            vm.StringProcura = searchString;
+
+            //var gestaoTarefasIPGContext = _context.Funcionario.Include(f => f.Cargos);
+            //return View(await gestaoTarefasIPGContext.ToListAsync());
+            return View(vm);
         }
 
         // GET: Funcionarios/Details/5
@@ -47,7 +76,7 @@ namespace GestãoTarefasIPG.Controllers
         // GET: Funcionarios/Create
         public IActionResult Create()
         {
-            ViewData["CargosId"] = new SelectList(_context.Cargos, "CargosId", "CargosId");
+            ViewData["CargosId"] = new SelectList(_context.Cargos, "CargosId", "Nome");
             return View();
         }
 
@@ -64,7 +93,7 @@ namespace GestãoTarefasIPG.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CargosId"] = new SelectList(_context.Cargos, "CargosId", "CargosId", funcionario.CargosId);
+            ViewData["CargosId"] = new SelectList(_context.Cargos, "CargosId", "Nome", funcionario.CargosId);
             return View(funcionario);
         }
 
@@ -81,7 +110,7 @@ namespace GestãoTarefasIPG.Controllers
             {
                 return NotFound();
             }
-            ViewData["CargosId"] = new SelectList(_context.Cargos, "CargosId", "CargosId", funcionario.CargosId);
+            ViewData["CargosId"] = new SelectList(_context.Cargos, "CargosId", "Nome", funcionario.CargosId);
             return View(funcionario);
         }
 
@@ -117,7 +146,7 @@ namespace GestãoTarefasIPG.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CargosId"] = new SelectList(_context.Cargos, "CargosId", "CargosId", funcionario.CargosId);
+            ViewData["CargosId"] = new SelectList(_context.Cargos, "CargosId", "Nome", funcionario.CargosId);
             return View(funcionario);
         }
 
